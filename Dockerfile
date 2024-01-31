@@ -36,8 +36,9 @@ RUN pecl install -o -f redis \
 
 # Set working directory
 WORKDIR /var/www
-RUN composer install
-# Copy custom configurations PHP
 COPY docker/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
+
+COPY . .
+RUN composer install
 
 USER $user
